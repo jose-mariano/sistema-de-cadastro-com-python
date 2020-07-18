@@ -36,18 +36,28 @@ class Application:
 		self.containerButton = tk.Frame(self.containerMain, padx=20, pady=20, bg=self.backgroundColor)
 		self.containerButton.pack()
 		self.buttonCreateAccount = tk.Button(self.containerButton, text='Create Account')
-		self.buttonCreateAccount['command'] = self.createAccount
+		self.buttonCreateAccount['command'] = self.checkData
 		self.buttonCreateAccount.pack()
 	
 
-	def createAccount(self):
+	def checkData(self):
 		self.getEntryValues()
+		checkPasswords = self.passwordEqualsConfirmPassword()
+		if checkPasswords == False:
+			print('The passwords are different')
 
 
 	def getEntryValues(self):
 		self.username = str(self.getUsername.get())
 		self.password = str(self.getPassword.get())
 		self.confirmPassword = str(self.getConfirmPassword.get())
+
+
+	def passwordEqualsConfirmPassword(self):
+		if self.password == self.confirmPassword:
+			return True
+		else:
+			return False
 
 
 
