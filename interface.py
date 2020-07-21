@@ -14,6 +14,7 @@ class Application:
 		self.getUsername = tk.Entry(self.containerUsername, width=30, bg=self.backgroundColor)
 		self.getUsername.config(highlightbackground='black')
 		self.getUsername.pack()
+		self.errorUsername = tk.Label(self.containerUsername, bg=self.backgroundColor)
 
 		self.containerPassword = tk.Frame(self.containerMain, padx=20, pady=10, bg=self.backgroundColor)
 		self.containerPassword.pack()
@@ -23,6 +24,7 @@ class Application:
 		self.getPassword['show'] = '*'
 		self.getPassword.config(highlightbackground='black')
 		self.getPassword.pack()
+		self.errorPassword = tk.Label(self.containerPassword, bg=self.backgroundColor)
 
 		self.containerConfirmPassword = tk.Frame(self.containerMain, padx=20, pady=10, bg=self.backgroundColor)
 		self.containerConfirmPassword.pack()
@@ -32,6 +34,7 @@ class Application:
 		self.getConfirmPassword['show'] = '*'
 		self.getConfirmPassword.config(highlightbackground='black')
 		self.getConfirmPassword.pack()
+		self.errorConfirmPassword = tk.Label(self.containerConfirmPassword, bg=self.backgroundColor)
 
 		self.containerButton = tk.Frame(self.containerMain, padx=20, pady=20, bg=self.backgroundColor)
 		self.containerButton.pack()
@@ -41,10 +44,19 @@ class Application:
 	
 
 	def checkData(self):
+		erros = False
+		self.clearErrorMessages()
 		self.getEntryValues()
 		checkPasswords = self.passwordEqualsConfirmPassword()
 		if checkPasswords == False:
-			print('The passwords are different')
+			erros = True
+			self.showError(self.errorConfirmPassword, '*the passwords are different*')
+		if not self.username[0].isalpha():
+			erros = True
+			self.showError(self.errorUsername, '*the username must begin with a letter*')
+		if not erros:
+			print('Creating new account...')
+			self.containerMain.quit()
 
 
 	def getEntryValues(self):
@@ -60,10 +72,26 @@ class Application:
 			return False
 
 
+	def showError(self, where, message):
+		where['fg'] = 'red'
+		where['font'] = ('arial', '8')
+		where['text'] = message
+		where.pack()
+
+
+	def clearErrorMessages(self):
+		errorLabels = (self.errorUsername, self.errorPassword, self.errorConfirmPassword)
+		for label in errorLabels:
+			label['text'] = ''
+			label.forget()
+
+
+
+
+
 
 window = tk.Tk()
 window['pady'] = 40
-window.title('Creating a new account')
-window.geometry('400x400')
+window.title('Create a new account')
 Application(window)
 window.mainloop()
