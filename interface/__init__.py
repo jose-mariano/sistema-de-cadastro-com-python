@@ -53,8 +53,8 @@ class StartPage(tk.Frame):
 		buttonExit = tk.Button(container, text='Sair', width=20, command=container.quit)
 		buttonExit.grid(row=4, column=0, pady=(0,60))
 
-		development = tk.Label(container, text='Desenvolvido por José Mariano da Silva', font=('Arial', '8'))
-		development.grid(row=5, column=0)
+		version = tk.Label(container, text='v1.0', font=('Arial', '8'))
+		version.grid(row=5, column=0)
 
 
 class SeeRegisteredPeople(tk.Frame):
