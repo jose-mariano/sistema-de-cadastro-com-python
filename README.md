@@ -1,5 +1,5 @@
 # sistema-de-cadastro-com-python
-Esse programa é uma adptação do desafio de número 115 do curso de python3 oferecido de forma gratuita pelo canal do youtube [Curso em Vídeo](https://www.youtube.com/c/CursoemV%C3%ADdeo/featured).
+Esse programa é uma adaptação do desafio de número 115 do curso de python3 oferecido de forma gratuita pelo canal do youtube [Curso em Vídeo](https://www.youtube.com/c/CursoemV%C3%ADdeo/featured).
 No desafio foi pedido um sistema que permitisse ao usuário cadastrar pessoas e visualizar quem foi cadastrado, salvando as informações em um arquivo de texto.
 
 O que eu fiz foi criar uma interface (algo que não foi pedido no desafio), além disso acrescentei mais campos para o usuário preencher e no lugar de um arquivo de texto optei por um banco de dados simples utilizando a biblioteca sqlite3.
